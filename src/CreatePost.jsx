@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function CreatePost() {
   const url = "http://localhost:3000/posts";
+  const nav = useNavigate();
 
-  const emptyPost = { title: "", author: "", cover: "", content: "", date: new Date().toISOString() };
+  const emptyPost = { title: "", author: "", cover: "", content: "", date: new Date().toLocaleString() };
   const [newPost, setNewPost] = useState(emptyPost);
   const [error, setError] = useState(false);
 
@@ -18,7 +20,9 @@ export default function CreatePost() {
       console.log(newPost);
       axios
         .post(url, newPost)
-        .then((res) => {})
+        .then((res) => {
+          nav("/");
+        })
         .catch((err) => {
           console.log(err);
           alert(err.message);
