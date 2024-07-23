@@ -56,9 +56,22 @@ const PostCard = ({ post: { id, title, author, content, cover, date } }) => {
   const [noImage, setNoImage] = useState(false);
 
   function handleError(e) {
-    e.target.src = defaultPlaceholder;
+    // e.target.src = defaultPlaceholder;
     setNoImage(true);
   }
+
+  const _date = new Date(date);
+  const _localDate = _date.toLocaleString("en-GB", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "Europe/London",
+  });
+  // const formattedDate = date.split("T")[0];
+  // const formattedTime = date.split("T")[1].slice(0, 5);
 
   return (
     <Link to={`post/${id}`}>
@@ -68,7 +81,8 @@ const PostCard = ({ post: { id, title, author, content, cover, date } }) => {
           <h2 className="card-title text-base text-ellipsis overflow-hidden">{title}</h2>
           <p className="text-sm text-ellipsis overflow-hidden max-h-16">{content}</p>
           <div className="card-actions justify-end">
-            <div className="badge badge-outline badge-success">{author}</div>
+            <div className="badge badge-outline badge-success">By: {author}</div>
+            <div className="badge badge-outline badge-warning">Posted on: {_localDate}</div>
           </div>
         </div>
       </div>
