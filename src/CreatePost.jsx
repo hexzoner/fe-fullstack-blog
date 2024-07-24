@@ -40,37 +40,37 @@ export default function CreatePost() {
   }
 
   return (
-    <div className="text-center min-h-screen max-w-[1000px] m-auto">
-      <p className="mt-6 text-2xl font-semibold">Create new Post</p>
-      <form onSubmit={onSubmit} action="submit" className="mt-8">
-        <InputField name="title" label="Title" placeholder="Enter title here" value={newPost.title} onChange={onChange} error={error} />
-        <InputField name="author" label="Author" placeholder="Enter author here" value={newPost.author} onChange={onChange} error={error} />
-        <InputField name="cover" label="Image URL" placeholder="Enter image URL here" value={newPost.cover} onChange={onChange} error={error} />
-
-        <label className="form-control max-w-lg m-auto my-3">
-          <div className="label">
-            <span className="label-text">Blog Content</span>
-          </div>
-          <textarea
-            name="content"
-            value={newPost.content}
-            onChange={onChange}
-            className={`textarea textarea-bordered h-40 resize-none ${error && newPost.content == "" && "textarea-error"}`}
-            placeholder="Enter the content here"></textarea>
-        </label>
-
-        <button type="submit" className="btn btn-outline btn-success mt-6">
-          Submit
-        </button>
-      </form>
+    <div className="min-h-screen max-w-[900px] m-auto">
+      <div className="bg-base-200 py-2 my-8 rounded-2xl max-w-[700px] m-auto">
+        <p className="mt-4 text-2xl font-semibold text-left w-full max-w-xl m-auto">Create new Post</p>
+        <form onSubmit={onSubmit} action="submit" className="mt-4 flex flex-col gap-3 pb-4">
+          <InputField name="title" label="Title" placeholder="Enter title here" value={newPost.title} onChange={onChange} error={error} />
+          <InputField name="author" label="Author" placeholder="Enter author here" value={newPost.author} onChange={onChange} error={error} />
+          <InputField name="cover" label="Image URL" placeholder="Enter image URL here" value={newPost.cover} onChange={onChange} error={error} />
+          <label className="form-control w-full max-w-xl m-auto ">
+            <div className="label pb-0">
+              <span className="label-text">Blog Content:</span>
+            </div>
+            <textarea
+              name="content"
+              value={newPost.content}
+              onChange={onChange}
+              className={`textarea textarea-bordered h-56 resize-none ${error && newPost.content == "" && "textarea-error"}`}
+              placeholder="Enter the content here"></textarea>
+          </label>
+          <button type="submit" className="btn btn-outline btn-success mt-6 w-full max-w-[10rem] m-auto">
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
 
 const InputField = ({ label, placeholder, name, value, onChange, error }) => {
   return (
-    <label className="form-control w-full max-w-lg m-auto my-1">
-      <div className="label">
+    <label className="form-control w-full max-w-xl m-auto">
+      <div className="label pb-0">
         <span className="label-text">{label}:</span>
       </div>
       <input onChange={onChange} value={value} name={name} type="text" placeholder={placeholder} className={`input input-bordered w-full ${error && value == "" && "input-error"}`} />

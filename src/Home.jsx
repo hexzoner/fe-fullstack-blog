@@ -42,7 +42,7 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <div className="py-12 grid grid-cols-4 max-w-[1200px] m-auto gap-3">
+        <div className="py-12 grid m-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-[1200px] gap-3">
           {posts.map((post) => {
             return <PostCard key={post.id} post={post} />;
           })}
@@ -76,7 +76,7 @@ const PostCard = ({ post: { id, title, author, content, cover, date } }) => {
 
   return (
     <Link to={`post/${id}`}>
-      <div className="card bg-base-300 max-w-96 shadow-xl h-[24rem] hover:cursor-pointe border-2 border-primary border-opacity-0 hover:border-opacity-60">
+      <div className=" card bg-base-300 m-auto max-w-96 shadow-xl h-[24rem] hover:cursor-pointe border-2 border-primary border-opacity-0 hover:border-opacity-60">
         <figure>{noImage ? <NoImage /> : <img onError={handleError} className="object-cover w-full h-48" src={cover} alt={title} />}</figure>
         <div className="card-body">
           <h2 className="card-title text-base text-ellipsis overflow-hidden">{title}</h2>
