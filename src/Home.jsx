@@ -5,6 +5,10 @@ import defaultPlaceholder from "./assets/placeholder-image.jpg";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
+
   const url = "http://localhost:3000/posts";
   const [loading, setLoading] = useState(true);
 
@@ -12,9 +16,12 @@ export default function Home() {
     document.querySelector("html").setAttribute("data-theme", "dim");
     setLoading(true);
     axios
-      .get(url, { params: { limit: 16 } })
+      .get(url, { params: { page: page, limit: 8 } })
       .then((res) => {
-        setPosts(res.data);
+        // console.log(res.data);
+        setPosts(res.data.results);
+        setTotalPages(res.data.totalPages);
+        setTotalResults(res.data.totalResults);
       })
       .catch((err) => {
         console.log(err);
@@ -22,7 +29,7 @@ export default function Home() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [page]);
 
   if (loading) {
     return (
@@ -37,15 +44,26 @@ export default function Home() {
       {posts.length == 0 ? (
         <div className="flex justify-center">
           <div className="bg-neutral-content p-10 rounded-lg shadow-2xl mt-20">
-            <h2 className="text-3xl text-neutral font-bold">Welcome to Fullstack Blog</h2>
+            <h2 className="text-3xl text-neutral font-bold">Welcome to the Full stack Blog</h2>
             <p className="mt-2 text-neutral text-center">No Blogs available at the moment.</p>
           </div>
         </div>
       ) : (
-        <div className="py-12 grid m-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-[1200px] gap-3">
-          {posts.map((post) => {
-            return <PostCard key={post.id} post={post} />;
-          })}
+        <div>
+          <div className="flex justify-between items-center mt-4 gap-4 max-w-[1100px] m-auto">
+            <div className="italic flex flex-col flex-wrap justify-left items-center text-sm relative left-0">
+              {totalPages > 1 && <p>Total Pages: {totalPages}</p>}
+              {totalResults > 1 && <p>Total Blogs: {totalResults}</p>}
+            </div>
+            <Pagination page={page} totalPages={totalPages} totalResults={totalResults} setPage={setPage} />
+            <div className="w-12"></div>
+          </div>
+
+          <div className="mt-4 mb-10 grid m-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-[1200px] gap-3">
+            {posts.map((post) => {
+              return <PostCard key={post.id} post={post} />;
+            })}
+          </div>
         </div>
       )}
     </div>
@@ -77,17 +95,35 @@ const PostCard = ({ post: { id, title, author, content, cover, date } }) => {
   return (
     <Link to={`post/${id}`}>
       <div className=" card bg-base-300 m-auto max-w-96 shadow-xl h-[24rem] hover:cursor-pointe border-2 border-primary border-opacity-0 hover:border-opacity-60">
-        <figure>{noImage ? <NoImage /> : <img onError={handleError} className="object-cover w-full h-48" src={cover} alt={title} />}</figure>
-        <div className="card-body">
+        <figure className="h-[45%]">{noImage ? <NoImage /> : <img onError={handleError} className="object-cover w-full h-full" src={cover} alt={title} />}</figure>
+        <div className="card-body py-2 justify-between gap-0">
           <h2 className="card-title text-base text-ellipsis overflow-hidden">{title}</h2>
           <p className="text-sm text-ellipsis overflow-hidden max-h-16">{content}</p>
           <div className="card-actions justify-end">
             <div className="badge badge-outline badge-success">By: {author}</div>
-            <div className="badge badge-outline badge-warning">Posted on: {_localDate}</div>
+            <div className="badge badge-outline badge-warning text-xs">Posted on: {_localDate}</div>
           </div>
         </div>
       </div>
     </Link>
+  );
+};
+
+const Pagination = ({ page, totalPages, totalResults, setPage }) => {
+  return (
+    <div className="join">
+      {page > 1 && (
+        <button onClick={() => setPage(page - 1)} className="join-item btn">
+          «
+        </button>
+      )}
+      <button className="join-item btn">Page {page}</button>
+      {page < totalPages && (
+        <button onClick={() => setPage(page + 1)} className="join-item btn">
+          »
+        </button>
+      )}
+    </div>
   );
 };
 
