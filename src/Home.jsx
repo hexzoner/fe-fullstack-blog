@@ -61,14 +61,15 @@ const PostCard = ({ post: { id, title, author, content, cover, date } }) => {
   }
 
   const _date = new Date(date);
-  const _localDate = _date.toLocaleString("en-GB", {
+  const _localDate = _date.toLocaleString("de-DE", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
-    timeZone: "Europe/London",
+    timeZone: "Europe/Berlin",
+    // timeZoneName: "short",
   });
   // const formattedDate = date.split("T")[0];
   // const formattedTime = date.split("T")[1].slice(0, 5);
