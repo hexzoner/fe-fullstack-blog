@@ -6,7 +6,7 @@ export default function CreatePost() {
   const url = "http://localhost:3000/posts";
   const nav = useNavigate();
 
-  const emptyPost = { title: "", author: "", cover: "", content: "", date: new Date().toLocaleString() };
+  const emptyPost = { title: "", author: "", cover: "", content: "", date: new Date().toISOString() };
   const [newPost, setNewPost] = useState(emptyPost);
   const [error, setError] = useState(false);
 
@@ -21,15 +21,14 @@ export default function CreatePost() {
       axios
         .post(url, newPost)
         .then((res) => {
+          setNewPost(emptyPost);
           nav("/");
         })
         .catch((err) => {
           console.log(err);
           alert(err.message);
         })
-        .finally(() => {
-          setNewPost(emptyPost);
-        });
+        .finally(() => {});
     }
   }
 
