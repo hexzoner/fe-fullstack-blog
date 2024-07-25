@@ -31,9 +31,27 @@ import axios from 'axios';
   return (
     <div className="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen">
       <div className="flex justify-center">
-        <div className="bg-white p-10 rounded-lg shadow-2xl mt-20">
-          <h2 className="text-3xl text-gray-900 font-bold">Post Details</h2>
-          <p className="mt-2 text-gray-600">This is the post details page</p>
+        <div className="flex bg-white bg-opacity-20 backdrop-blur-lg min-w-[900px] m-auto mt-20">
+          {post.cover && (
+              <img
+                src={post.cover}
+                alt="Cover"
+                className="w-1/3 p-4 rounded-t-lg" 
+              />
+          )}
+          <div className='w-2/3'>
+            <h2 className="text-3xl text-gray-900 font-bold">{post.title}</h2>
+            <p className="mt-2 text-gray-600">{post.content}</p>
+            {post.author && (
+              <p className="mt-4 text-gray-500">
+                <strong className='text-slate-800'>Author:</strong> {post.author}
+              </p>
+            )}
+            <div className="justify-end">
+              <button className="btn border-0 bg-green-400 hover:bg-green-600 text-white ml-2">Edit</button> {/* Edit button */}
+              <button className="btn border-0 bg-cyan-600 hover:bg-sky-700 text-white ml-2">Delete</button> {/* Delete button */}
+            </div>
+          </div>
         </div>
       </div>
     </div>
