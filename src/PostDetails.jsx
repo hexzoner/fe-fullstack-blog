@@ -31,7 +31,7 @@ import axios from 'axios';
   return (
     <div className="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen">
       <div className="flex justify-center">
-        <div className="flex bg-white bg-opacity-20 backdrop-blur-lg min-w-[900px] m-auto mt-20">
+        <div className="flex bg-white bg-opacity-20 backdrop-blur-lg max-w-[1200px] p-8 m-auto mt-20">
           {post.cover && (
               <img
                 src={post.cover}
