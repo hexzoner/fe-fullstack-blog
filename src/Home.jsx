@@ -41,14 +41,7 @@ export default function Home() {
 
   return (
     <div className="bg-base-100 min-h-screen">
-      {posts && posts.length == 0 ? (
-        <div className="flex justify-center">
-          <div className="bg-neutral-content p-10 rounded-lg shadow-2xl mt-20">
-            <h2 className="text-3xl text-neutral font-bold">Welcome to the Full stack Blog</h2>
-            <p className="mt-2 text-neutral text-center">No Blogs available at the moment.</p>
-          </div>
-        </div>
-      ) : (
+      {posts && posts.length > 0 ? (
         <div>
           <div className="flex justify-between items-center mt-4 gap-4 max-w-[1100px] m-auto">
             <div className="italic flex flex-col flex-wrap justify-left items-center text-sm relative left-0">
@@ -63,6 +56,13 @@ export default function Home() {
             {posts.map((post) => {
               return <PostCard key={post.id} post={post} />;
             })}
+          </div>
+        </div>
+      ) : (
+        <div className="flex justify-center">
+          <div className="bg-neutral-content p-10 rounded-lg shadow-2xl mt-20">
+            <h2 className="text-3xl text-neutral font-bold">Welcome to the Full stack Blog</h2>
+            <p className="mt-2 text-neutral text-center">No Blogs available at the moment.</p>
           </div>
         </div>
       )}
