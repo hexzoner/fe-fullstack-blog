@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <div className="bg-base-100 min-h-screen">
-      {posts.length == 0 ? (
+      {posts && posts.length == 0 ? (
         <div className="flex justify-center">
           <div className="bg-neutral-content p-10 rounded-lg shadow-2xl mt-20">
             <h2 className="text-3xl text-neutral font-bold">Welcome to the Full stack Blog</h2>
