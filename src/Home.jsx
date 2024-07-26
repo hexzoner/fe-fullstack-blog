@@ -44,9 +44,9 @@ export default function Home() {
       {posts && posts.length > 0 ? (
         <div>
           <div className="flex justify-between items-center mt-4 gap-4 max-w-[1100px] m-auto">
-            <div className="italic flex flex-col flex-wrap justify-left items-center text-sm relative left-0">
-              {totalPages > 1 && <p>Total Pages: {totalPages}</p>}
-              {totalResults > 1 && <p>Total Blogs: {totalResults}</p>}
+            <div className="italic flex gap-5 flex-wrap justify-left items-center text-sm relative left-0">
+              {totalResults > 1 && <p>Blogs: {totalResults}</p>}
+              {totalPages > 1 && <p>Pages: {totalPages}</p>}
             </div>
             <Pagination page={page} totalPages={totalPages} totalResults={totalResults} setPage={setPage} />
             <div className="w-12"></div>

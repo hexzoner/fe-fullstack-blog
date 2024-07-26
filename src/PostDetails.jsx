@@ -66,51 +66,20 @@ function PostDetails() {
   if (editMode)
     return (
       <>
-        <div className="flex flex-col gap-5 p-4">
+        <div className="flex flex-col gap-5 p-4 max-w-[1100px] m-auto min-h-screen mt-16">
           <div className="flex flex-col gap-3">
-            <input
-              name="title"
-              placeholder="Enter title here"
-              value={post.title}
-              onChange={handleEditing}
-              className={`input input-bordered w-full ${
-                post.title === "" && "input-error"
-              }`}
-            />
-            <input
-              name="author"
-              placeholder="Enter author here"
-              value={post.author}
-              onChange={handleEditing}
-              className={`input input-bordered w-full ${
-                post.author === "" && "input-error"
-              }`}
-            />
-            <input
-              name="cover"
-              placeholder="Enter image URL here"
-              value={post.cover}
-              onChange={handleEditing}
-              className={`input input-bordered w-full ${
-                post.cover === "" && "input-error"
-              }`}
-            />
+            <input name="title" placeholder="Enter title here" value={post.title} onChange={handleEditing} className={`input input-bordered w-full ${post.title === "" && "input-error"}`} />
+            <input name="author" placeholder="Enter author here" value={post.author} onChange={handleEditing} className={`input input-bordered w-full ${post.author === "" && "input-error"}`} />
+            <input name="cover" placeholder="Enter image URL here" value={post.cover} onChange={handleEditing} className={`input input-bordered w-full ${post.cover === "" && "input-error"}`} />
             <textarea
               name="content"
               value={post.content}
               onChange={handleEditing}
-              className={`textarea textarea-bordered h-56 resize-none ${
-                post.content === "" && "textarea-error"
-              }`}
-              placeholder="Enter the content here"
-            ></textarea>
+              className={`textarea textarea-bordered h-56 resize-none ${post.content === "" && "textarea-error"}`}
+              placeholder="Enter the content here"></textarea>
           </div>
           <div className="flex gap-2 items-end">
-            <button
-              type="submit"
-              className="btn btn-success w-fit px-8"
-              onClick={handleSave}
-            >
+            <button type="submit" className="btn btn-success w-fit px-8" onClick={handleSave}>
               Save
             </button>
             <button className="btn btn-error" onClick={handleDelete}>
@@ -120,8 +89,7 @@ function PostDetails() {
               className="btn btn-neutral w-fit px-6"
               onClick={() => {
                 window.location.reload();
-              }}
-            >
+              }}>
               Cancel
             </button>
           </div>
@@ -131,44 +99,33 @@ function PostDetails() {
 
   return (
     <div className="bg-base-100 min-h-screen">
-        <div className="text-neutral-content flex justify-center flex-col bg-base-300 bg-opacity-20 backdrop-blur-lg max-w-[1200px] p-8 m-auto mt-20 rounded-lg shadow-lg">
-          {post.cover && (
-            <img
-              src={post.cover}
-              alt="Cover"
-              className="w-full h-auto max-h-64 object-cover rounded-t-lg"
-            />
+      <div className="text-neutral-content flex justify-center flex-col bg-base-300 bg-opacity-20 backdrop-blur-lg max-w-[1200px] p-8 m-auto mt-20 rounded-lg shadow-lg">
+        {post.cover && <img src={post.cover} alt="Cover" className="w-full h-auto max-h-64 object-cover rounded-t-lg" />}
+        <div className="p-4">
+          <h2 className="text-3xl font-bold">{post.title}</h2>
+          <p className="mt-2 text-justify">{post.content}</p>
+          {post.author && (
+            <p className="mt-4 mb-2">
+              <strong className="">Author:</strong> {post.author}
+            </p>
           )}
-          <div className='p-4'>
-            <h2 className="text-3xl font-bold">{post.title}</h2>
-            <p className="mt-2 text-justify">{post.content}</p>
-            {post.author && (
-              <p className="mt-4 mb-2">
-                <strong className=''>Author:</strong>{" "}
-                {post.author}
-              </p>
-            )}
-            <div className="justify-end">
-              <button
-                className="btn btn-outline"
-                onClick={() => {
-                  setEditMode(true);
-                }}
-              >
-                Edit
-              </button>{" "}
-              {/* Edit button */}
-              <button
-                className="btn btn-outline btn-error"
-                onClick={handleDelete}
-              >
-                Delete
-              </button>{" "}
-              {/* Delete button */}
-            </div>
+          <div className="justify-end">
+            <button
+              className="btn btn-outline"
+              onClick={() => {
+                setEditMode(true);
+              }}>
+              Edit
+            </button>{" "}
+            {/* Edit button */}
+            <button className="btn btn-outline btn-error" onClick={handleDelete}>
+              Delete
+            </button>{" "}
+            {/* Delete button */}
           </div>
         </div>
       </div>
+    </div>
   );
 }
 
