@@ -130,21 +130,20 @@ function PostDetails() {
     );
 
   return (
-    <div className="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen">
-      <div className="flex justify-center">
-        <div className="flex bg-white bg-opacity-20 backdrop-blur-lg max-w-[1200px] p-8 m-auto mt-20">
+    <div className="bg-base-100 min-h-screen">
+        <div className="text-neutral-content flex justify-center flex-col bg-base-300 bg-opacity-20 backdrop-blur-lg max-w-[1200px] p-8 m-auto mt-20 rounded-lg shadow-lg">
           {post.cover && (
             <img
               src={post.cover}
               alt="Cover"
-              className="w-1/3 p-4 rounded-t-lg"
+              className="w-full h-auto max-h-64 object-cover rounded-t-lg"
             />
           )}
-          <div className="w-2/3">
-            <h2 className="text-3xl text-gray-900 font-bold">{post.title}</h2>
-            <p className="mt-2 text-gray-600">{post.content}</p>
+          <div className='p-4'>
+            <h2 className="text-3xl font-bold">{post.title}</h2>
+            <p className="mt-2 text-justify">{post.content}</p>
             {post.author && (
-              <p className="mt-4 text-gray-500">
+              <p className="mt-4 mb-2">
                 <strong className="text-slate-800">Author:</strong>{" "}
                 {post.author}
               </p>
