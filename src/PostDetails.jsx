@@ -169,7 +169,6 @@ function PostDetails() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
