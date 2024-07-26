@@ -150,7 +150,7 @@ function PostDetails() {
             )}
             <div className="justify-end">
               <button
-                className="btn border-0 bg-green-400 hover:bg-green-600 text-white ml-2"
+                className="btn btn-outline"
                 onClick={() => {
                   setEditMode(true);
                 }}
@@ -159,7 +159,7 @@ function PostDetails() {
               </button>{" "}
               {/* Edit button */}
               <button
-                className="btn border-0 bg-cyan-600 hover:bg-sky-700 text-white ml-2"
+                className="btn btn-outline btn-error"
                 onClick={handleDelete}
               >
                 Delete
