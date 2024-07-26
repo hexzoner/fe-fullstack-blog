@@ -144,7 +144,7 @@ function PostDetails() {
             <p className="mt-2 text-justify">{post.content}</p>
             {post.author && (
               <p className="mt-4 mb-2">
-                <strong className="text-slate-800">Author:</strong>{" "}
+                <strong className=''>Author:</strong>{" "}
                 {post.author}
               </p>
             )}
